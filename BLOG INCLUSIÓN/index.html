@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación Inclusiva | Blog LEI</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts: Fredoka y Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta EdTech Premium */
+            --edu-pink: #FF6B6B;
+            --edu-yellow: #FFD93D;
+            --edu-green: #6BCB77;
+            --edu-blue: #4D96FF;
+            --edu-purple: #9D4EDD;
+            
+            --bg-color: #F8F9FA;
+            --text-dark: #2C3E50;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            
+            /* FONDO EN FORMATO TILE CON TU IMAGEN LOCAL */
+            background-image: url("file:///C:/Users/ethel/Downloads/PROGRAMAS%20RANDOM/download.jpg");
+            background-repeat: repeat; /* Efecto Mosaico/Tile */
+            background-size: auto; /* Mantiene el tamaño original de la imagen para que se repita */
+            background-attachment: fixed; /* El fondo se queda fijo mientras haces scroll */
+        }
+
+        /* Barra de Progreso Arcoíris */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--edu-pink), var(--edu-yellow), var(--edu-green), var(--edu-blue), var(--edu-purple));
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Tipografías */
+        h1, h2, h3, h4, .nav-brand {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--text-dark);
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            font-weight: 600;
+            color: #4A5568;
+        }
+
+        /* Nav Divertida y Limpia */
+        .navbar-edu {
+            background-color: white;
+            border: 4px solid var(--text-dark);
+            border-radius: 50px;
+            padding: 12px 30px;
+            margin: 20px auto;
+            max-width: 1000px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+        }
+
+        /* Carrusel Header Estilo NeoPop */
+        .neo-carousel-wrapper {
+            border: 4px solid var(--text-dark);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 12px 12px 0px var(--edu-purple);
+            margin-bottom: 4rem;
+            background-color: white;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .neo-carousel-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .carousel-item img {
+            height: 450px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Controles de Carrusel Personalizados */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: var(--edu-pink);
+            border: 3px solid var(--text-dark);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            box-shadow: 3px 3px 0px var(--text-dark);
+            background-size: 60%;
+        }
+        
+        .carousel-control-next-icon { background-color: var(--edu-yellow); }
+
+        .carousel-indicators [data-bs-target] {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid var(--text-dark);
+            background-color: white;
+            opacity: 1;
+            margin: 0 6px;
+        }
+
+        .carousel-indicators .active {
+            background-color: var(--edu-green);
+            transform: scale(1.3);
+        }
+
+        /* Estilo de Tarjetas NeoPop */
+        .edu-card {
+            background-color: white;
+            border-radius: 30px;
+            padding: 40px;
+            height: 100%;
+            border: 4px solid var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Imágenes Estilo NeoPop */
+        .neo-img {
+            width: 100%;
+            border: 4px solid var(--text-dark);
+            border-radius: 30px;
+            background-color: white;
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+
+        .img-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .img-wrapper:hover {
+            transform: translateY(-10px) scale(1.02) !important;
+        }
+
+        /* Sombras Coloridas */
+        .shadow-pink { box-shadow: 8px 8px 0px var(--edu-pink); }
+        .edu-card.shadow-pink:hover, .img-wrapper.shadow-pink:hover { box-shadow: 12px 12px 0px var(--edu-pink); }
+        
+        .shadow-blue { box-shadow: 8px 8px 0px var(--edu-blue); }
+        .edu-card.shadow-blue:hover, .img-wrapper.shadow-blue:hover { box-shadow: 12px 12px 0px var(--edu-blue); }
+        
+        .shadow-yellow { box-shadow: 8px 8px 0px var(--edu-yellow); }
+        .edu-card.shadow-yellow:hover, .img-wrapper.shadow-yellow:hover { box-shadow: 12px 12px 0px var(--edu-yellow); }
+        
+        .shadow-green { box-shadow: 8px 8px 0px var(--edu-green); }
+        .edu-card.shadow-green:hover, .img-wrapper.shadow-green:hover { box-shadow: 12px 12px 0px var(--edu-green); }
+        
+        .shadow-purple { box-shadow: 8px 8px 0px var(--edu-purple); }
+        .edu-card.shadow-purple:hover, .img-wrapper.shadow-purple:hover { box-shadow: 12px 12px 0px var(--edu-purple); }
+
+        /* Colores de Texto */
+        .highlight-pink { color: var(--edu-pink); }
+        .highlight-blue { color: var(--edu-blue); }
+        .highlight-yellow { color: var(--edu-yellow); text-shadow: 1px 1px 0px #000; }
+        .highlight-green { color: var(--edu-green); }
+        .highlight-purple { color: var(--edu-purple); }
+
+        /* Marcatextos Visual */
+        .marker {
+            background: linear-gradient(180deg, transparent 60%, rgba(255, 217, 61, 0.5) 40%);
+            padding: 0 5px;
+            display: inline;
+        }
+
+        /* Insignias estilo Stickers */
+        .sticker-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 3px solid var(--text-dark);
+            margin-bottom: 20px;
+            transform: rotate(-3deg);
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
+
+        .bg-pink { background-color: var(--edu-pink); color: white; }
+        .bg-purple { background-color: var(--edu-purple); color: white; transform: rotate(2deg); }
+        .bg-blue { background-color: var(--edu-blue); color: white; }
+        .bg-green { background-color: var(--edu-green); color: white; transform: rotate(3deg); }
+
+        /* Footer */
+        footer {
+            background-color: var(--edu-blue);
+            color: white;
+            padding: 50px 20px;
+            border-top: 5px solid var(--text-dark);
+            margin-top: 60px;
+            border-radius: 50px 50px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de progreso arcoíris -->
+    <div id="progress-bar"></div>
+
+    <!-- Navegación -->
+    <div class="container">
+        <nav class="navbar-edu d-flex justify-content-between align-items-center" data-aos="fade-down">
+            <div class="nav-brand fs-3 d-flex align-items-center gap-2">
+                <span style="font-size: 1.5rem;">🖍️</span> Educación Inclusiva
+            </div>
+            <div class="d-none d-md-flex gap-4">
+            </div>
+            <span class="fw-bold px-4 py-2 text-white rounded-pill" style="background-color: var(--edu-pink); border: 2px solid var(--text-dark);">LEI V</span>
+        </nav>
+    </div>
+
+    <main class="container py-2">
+
+        <!-- HEADER DE CARRUSEL -->
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+            <div class="col-12">
+                <div class="neo-carousel-wrapper">
+                    <div id="headerCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators mb-3">
+                            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#headerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="diver.jpg" alt="Niños aprendiendo juntos">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="dib.jpg" alt="Manos unidas diversidad">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="ahorasi.jpg" alt="Creatividad y color">
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#headerCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#headerCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TÍTULO PRINCIPAL -->
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-lg-10 text-center" data-aos="fade-up">
+                <span class="sticker-badge bg-pink">🌟 Reflexión LEI</span>
+                <h1 class="display-3 mb-4 fw-bold" style="background-color: white; border: 4px solid var(--text-dark); border-radius: 20px; display: inline-block; padding: 10px 30px;">
+                    ¿Realmente estamos <span class="highlight-blue">incluyendo</span> a todos?
+                </h1>
+                <p class="fs-5 px-md-5" style="background-color: white; border: 3px solid var(--text-dark); border-radius: 15px; padding: 15px; display: inline-block;">
+                    Un análisis sobre las aulas mexicanas, las adaptaciones "razonables" y el verdadero significado de hacer espacio para la diversidad.
+                </p>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: EL PROBLEMA -->
+        <div class="row g-5 mb-5 align-items-center">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="edu-card shadow-blue">
+                    <h2 class="mb-3 highlight-blue">El verdadero problema</h2>
+                    <p>Después de leer el artículo sobre las inclusiones “razonables” en materia de discapacidad en México, algo que me quedó bastante claro es que hablar de educación inclusiva es mucho más fácil que llevarla realmente a la práctica.</p>
+                    <p>Muchas veces pensamos que incluir a un estudiante significa simplemente permitirle estar dentro del mismo salón que los demás o hacer alguna adaptación cuando la necesita.</p>
+                    <p class="mb-0 fw-bold">Pero el verdadero problema es que ciertas medidas buscan <span class="marker">adaptar al estudiante al sistema que ya existe</span>, en lugar de cuestionar si ese sistema está diseñado para atender a la diversidad desde el principio.</p>
+                </div>
+            </div>
+
+            <!-- Imagen 1 -->
+            <div class="col-lg-5 text-center" data-aos="fade-left">
+                <div class="img-wrapper shadow-pink" style="transform: rotate(3deg);">
+                    <img src="phrase.jpg" alt="¿Qué es inclusión?" class="neo-img p-2">
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: PERSPECTIVA DOCENTE -->
+        <div class="row g-5 mb-5">
+            <div class="col-12" data-aos="fade-up">
+                <div class="edu-card shadow-yellow" style="background-color: #FFFDF0; padding: 3rem;">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-7">
+                            <span class="sticker-badge bg-blue">👩🏻‍🏫 Futura Docente</span>
+                            <h2 class="display-5 mb-4 highlight-yellow">No somos una excepción</h2>
+                            <p>Como futura docente, considero que no podemos pensar que todos los estudiantes van a aprender de la misma manera ni que todos tienen que ajustarse a una única forma de enseñar.</p>
+                            <p class="mb-0">Si una persona necesita una adaptación para poder participar en las mismas condiciones que sus compañeros, <span class="highlight-pink fw-bold">no debería verse como un favor o como una excepción</span>, sino como parte de una educación que realmente pretende ser accesible.</p>
+                        </div>
+                        <!-- Imagen 2 -->
+                        <div class="col-lg-5">
+                            <div class="img-wrapper shadow-blue" style="transform: rotate(-2deg);">
+                                <img src="C:\Users\ethel\Downloads\PROGRAMAS RANDOM\inclu.jpg" alt="Podemos ser diferentes pero trabajamos juntos" class="neo-img p-2 bg-white">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: EL SISTEMA Y LA DIVERSIDAD -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="edu-card shadow-green">
+                    <span class="sticker-badge bg-green">🏫 Sistema</span>
+                    <h2 class="mb-3 highlight-green">Factores Institucionales</h2>
+                    <p>La inclusión no depende únicamente del maestro. Obviamente, el docente tiene un papel importantísimo, pero también existen factores institucionales, sociales y políticos.</p>
+                    <p class="mb-0">No podemos pedirle a un maestro que sea completamente inclusivo si el sistema no le proporciona las herramientas, preparación y recursos necesarios para hacerlo.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                <div class="edu-card shadow-purple">
+                    <span class="sticker-badge bg-purple">🧩 Diversidad</span>
+                    <h2 class="mb-3 highlight-purple">Más allá de la discapacidad</h2>
+                    <p>La inclusión no debería reducirse únicamente a la discapacidad. Una escuela inclusiva es aquella que reconoce diferentes formas de aprender, comunicarse y participar.</p>
+                    <p class="mb-0 p-3 rounded-4 mt-3" style="background-color: rgba(157, 78, 221, 0.1); border: 2px dashed var(--edu-purple);">
+                        La diversidad no debería ser vista como un problema que tenemos que solucionar, sino como una <strong>característica normal de cualquier grupo</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN FINAL -->
+        <div class="row g-5 justify-content-center mt-3 pt-3 mb-5 align-items-center" data-aos="zoom-in">
+            <!-- Imagen 3 -->
+            <div class="col-lg-5 order-2 order-lg-1">
+                <div class="img-wrapper shadow-yellow" style="transform: rotate(-3deg);">
+                    <img src="family.jpg" alt="Incluir no es hacer un favor" class="neo-img p-2 bg-white">
+                </div>
+            </div>
+
+            <div class="col-lg-7 order-1 order-lg-2">
+                <div class="edu-card shadow-pink" style="border-width: 6px;">
+                    <div class="mb-4">
+                        <span class="sticker-badge bg-pink fs-6">💭 Reflexión Final</span>
+                    </div>
+                    
+                    <h2 class="mb-3 fs-1 highlight-pink">Crear las condiciones.</h2>
+                    <p class="fs-5 mb-4">Al final, mi principal reflexión después de leer este artículo es que incluir no es simplemente permitir que alguien esté presente, sino crear las condiciones para que realmente pueda participar y aprender. Y creo que esa diferencia es enorme.</p>
+                    
+                    <!-- Pizarra de Cita Final -->
+                    <div class="p-4 rounded-4" style="background-color: var(--text-dark); color: white; position: relative; border: 3px solid var(--edu-blue);">
+                        <p class="mb-3" style="color: var(--edu-yellow); font-size: 1.2rem;">
+                            "Como futura profesora, me quedo con la idea de que no quiero limitarme a preguntar <i>‘¿qué necesita este alumno para adaptarse a mi clase?’</i>, sino preguntarme:"
+                        </p>
+                        <h3 class="mb-0 fw-bold" style="color: white; line-height: 1.4; font-size: 1.8rem; font-family: 'Fredoka', sans-serif;">
+                            ‘¿Qué puedo <span style="color: var(--edu-pink);">cambiar yo</span> de mi clase para que este alumno pueda <span style="color: var(--edu-green);">formar parte</span> de ella?’
+                        </h3>
+                        <p class="mt-4 mb-0 fw-bold highlight-blue fs-5">Para mí, ahí empieza una inclusión mucho más real.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Maestros -->
+    <footer class="text-center position-relative">
+        <div class="container">
+            <h2 class="mb-3">Ethel M. Hernández Williams 👩🏻‍💻🍎</h2>
+            <p class="fs-5 mb-0 fw-bold text-white" style="letter-spacing: 1px;">
+                INCLUSIÓN DE ALUMNOS CON NECESIDADES ESPECIALES | LEI V
+            </p>
+            <p class="mt-2 mb-0" style="color: rgba(255,255,255,0.7);">
+                Universidad Estatal de Sonora
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Script de Profesionalismo Front-End -->
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+    </script>
+</body>
+</html>
