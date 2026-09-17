@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags optimizados para dispositivos móviles (PWA) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FF6B6B">
     <title>Educación Inclusiva | Blog LEI</title>
     
     <!-- Bootstrap 5 CSS -->
@@ -65,20 +68,18 @@
             line-height: 1.7;
             font-weight: 600;
             color: #4A5568;
+            text-align: justify; /* TEXTO JUSTIFICADO */
         }
 
-        /* Nav Divertida y Limpia */
-        .navbar-edu {
+        /* Título Flotante (Reemplazo de Navbar) */
+        .header-title-box {
             background-color: white;
             border: 4px solid var(--text-dark);
             border-radius: 50px;
-            padding: 12px 30px;
-            margin: 20px auto;
-            max-width: 1000px;
+            padding: 12px 35px;
+            margin: 25px auto 40px auto;
+            max-width: fit-content;
             box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 20px;
-            z-index: 1000;
         }
 
         /* Carrusel Header Estilo NeoPop */
@@ -228,6 +229,48 @@
             margin-top: 60px;
             border-radius: 50px 50px 0 0;
         }
+
+        /* OPTIMIZACIONES RESPONSIVAS PARA CELULARES */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll; /* Mejora el rendimiento en pantallas móviles */
+            }
+            
+            .header-title-box {
+                padding: 10px 20px; /* Evita que el título se desborde */
+                margin-top: 15px;
+            }
+            
+            .nav-brand {
+                font-size: 1.5rem !important; /* Ajusta el tamaño de la fuente del título flotante */
+            }
+            
+            .edu-card {
+                padding: 20px; /* Reduce márgenes internos en pantallas chicas */
+                border-width: 3px; 
+            }
+            
+            /* Ajuste de sombras para no invadir toda la pantalla chica */
+            .shadow-pink { box-shadow: 5px 5px 0px var(--edu-pink); }
+            .shadow-blue { box-shadow: 5px 5px 0px var(--edu-blue); }
+            .shadow-yellow { box-shadow: 5px 5px 0px var(--edu-yellow); }
+            .shadow-green { box-shadow: 5px 5px 0px var(--edu-green); }
+            .shadow-purple { box-shadow: 5px 5px 0px var(--edu-purple); }
+            
+            h1.display-3 {
+                font-size: 2rem !important;
+                padding: 10px 15px !important;
+            }
+            
+            .carousel-item img {
+                height: 250px; /* Hace el carrusel más compacto */
+            }
+            
+            .img-wrapper {
+                transform: rotate(0deg) !important; /* Evita desbordes horizontales en cel */
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,16 +278,13 @@
     <!-- Barra de progreso arcoíris -->
     <div id="progress-bar"></div>
 
-    <!-- Navegación -->
+    <!-- Título Flotante Superior (Reemplaza a la NavBar) -->
     <div class="container">
-        <nav class="navbar-edu d-flex justify-content-between align-items-center" data-aos="fade-down">
-            <div class="nav-brand fs-3 d-flex align-items-center gap-2">
-                <span style="font-size: 1.5rem;">🖍️</span> Educación Inclusiva
-            </div>
-            <div class="d-none d-md-flex gap-4">
-            </div>
-            <span class="fw-bold px-4 py-2 text-white rounded-pill" style="background-color: var(--edu-pink); border: 2px solid var(--text-dark);">LEI V</span>
-        </nav>
+        <div class="header-title-box text-center" data-aos="fade-down">
+            <span class="nav-brand fs-2 fw-bold d-flex align-items-center justify-content-center gap-2 m-0">
+                <span style="font-size: 1.8rem;">🖍️</span> Educación Inclusiva
+            </span>
+        </div>
     </div>
 
     <main class="container py-2">
@@ -289,10 +329,12 @@
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-lg-10 text-center" data-aos="fade-up">
                 <span class="sticker-badge bg-pink">🌟 Reflexión LEI</span>
+                <br>
                 <h1 class="display-3 mb-4 fw-bold" style="background-color: white; border: 4px solid var(--text-dark); border-radius: 20px; display: inline-block; padding: 10px 30px;">
                     ¿Realmente estamos <span class="highlight-blue">incluyendo</span> a todos?
                 </h1>
-                <p class="fs-5 px-md-5" style="background-color: white; border: 3px solid var(--text-dark); border-radius: 15px; padding: 15px; display: inline-block;">
+                <br>
+                <p class="fs-5 px-md-5" style="background-color: white; border: 3px solid var(--text-dark); border-radius: 15px; padding: 15px; display: inline-block; text-align: center;">
                     Un análisis sobre las aulas mexicanas, las adaptaciones "razonables" y el verdadero significado de hacer espacio para la diversidad.
                 </p>
             </div>
@@ -355,7 +397,7 @@
                     <span class="sticker-badge bg-purple">🧩 Diversidad</span>
                     <h2 class="mb-3 highlight-purple">Más allá de la discapacidad</h2>
                     <p>La inclusión no debería reducirse únicamente a la discapacidad. Una escuela inclusiva es aquella que reconoce diferentes formas de aprender, comunicarse y participar.</p>
-                    <p class="mb-0 p-3 rounded-4 mt-3" style="background-color: rgba(157, 78, 221, 0.1); border: 2px dashed var(--edu-purple);">
+                    <p class="mb-0 p-3 rounded-4 mt-3" style="background-color: rgba(157, 78, 221, 0.1); border: 2px dashed var(--edu-purple); text-align: center;">
                         La diversidad no debería ser vista como un problema que tenemos que solucionar, sino como una <strong>característica normal de cualquier grupo</strong>.
                     </p>
                 </div>
@@ -373,15 +415,15 @@
 
             <div class="col-lg-7 order-1 order-lg-2">
                 <div class="edu-card shadow-pink" style="border-width: 6px;">
-                    <div class="mb-4">
+                    <div class="mb-4 text-center">
                         <span class="sticker-badge bg-pink fs-6">💭 Reflexión Final</span>
                     </div>
                     
-                    <h2 class="mb-3 fs-1 highlight-pink">Crear las condiciones.</h2>
+                    <h2 class="mb-3 fs-1 highlight-pink text-center">Crear las condiciones.</h2>
                     <p class="fs-5 mb-4">Al final, mi principal reflexión después de leer este artículo es que incluir no es simplemente permitir que alguien esté presente, sino crear las condiciones para que realmente pueda participar y aprender. Y creo que esa diferencia es enorme.</p>
                     
                     <!-- Pizarra de Cita Final -->
-                    <div class="p-4 rounded-4" style="background-color: var(--text-dark); color: white; position: relative; border: 3px solid var(--edu-blue);">
+                    <div class="p-4 rounded-4 text-center" style="background-color: var(--text-dark); color: white; position: relative; border: 3px solid var(--edu-blue);">
                         <p class="mb-3" style="color: var(--edu-yellow); font-size: 1.2rem;">
                             "Como futura profesora, me quedo con la idea de que no quiero limitarme a preguntar <i>‘¿qué necesita este alumno para adaptarse a mi clase?’</i>, sino preguntarme:"
                         </p>
