@@ -2,10 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta tags optimizados para dispositivos móviles (PWA) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#FF6B6B">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educación Inclusiva | Blog LEI</title>
     
     <!-- Bootstrap 5 CSS -->
@@ -37,7 +34,7 @@
             overflow-x: hidden;
             
             /* FONDO EN FORMATO TILE CON TU IMAGEN LOCAL */
-            background-image: url("download.jpg");
+            background-image: url("file:///C:/Users/ethel/Downloads/PROGRAMAS%20RANDOM/download.jpg");
             background-repeat: repeat; /* Efecto Mosaico/Tile */
             background-size: auto; /* Mantiene el tamaño original de la imagen para que se repita */
             background-attachment: fixed; /* El fondo se queda fijo mientras haces scroll */
@@ -229,48 +226,6 @@
             margin-top: 60px;
             border-radius: 50px 50px 0 0;
         }
-
-        /* OPTIMIZACIONES RESPONSIVAS PARA CELULARES */
-        @media (max-width: 768px) {
-            body {
-                background-attachment: scroll; /* Mejora el rendimiento en pantallas móviles */
-            }
-            
-            .header-title-box {
-                padding: 10px 20px; /* Evita que el título se desborde */
-                margin-top: 15px;
-            }
-            
-            .nav-brand {
-                font-size: 1.5rem !important; /* Ajusta el tamaño de la fuente del título flotante */
-            }
-            
-            .edu-card {
-                padding: 20px; /* Reduce márgenes internos en pantallas chicas */
-                border-width: 3px; 
-            }
-            
-            /* Ajuste de sombras para no invadir toda la pantalla chica */
-            .shadow-pink { box-shadow: 5px 5px 0px var(--edu-pink); }
-            .shadow-blue { box-shadow: 5px 5px 0px var(--edu-blue); }
-            .shadow-yellow { box-shadow: 5px 5px 0px var(--edu-yellow); }
-            .shadow-green { box-shadow: 5px 5px 0px var(--edu-green); }
-            .shadow-purple { box-shadow: 5px 5px 0px var(--edu-purple); }
-            
-            h1.display-3 {
-                font-size: 2rem !important;
-                padding: 10px 15px !important;
-            }
-            
-            .carousel-item img {
-                height: 250px; /* Hace el carrusel más compacto */
-            }
-            
-            .img-wrapper {
-                transform: rotate(0deg) !important; /* Evita desbordes horizontales en cel */
-                margin-bottom: 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -373,7 +328,7 @@
                         <!-- Imagen 2 -->
                         <div class="col-lg-5">
                             <div class="img-wrapper shadow-blue" style="transform: rotate(-2deg);">
-                                <img src="inclu.jpg" alt="Podemos ser diferentes pero trabajamos juntos" class="neo-img p-2 bg-white">
+                                <img src="C:\Users\ethel\Downloads\PROGRAMAS RANDOM\inclu.jpg" alt="Podemos ser diferentes pero trabajamos juntos" class="neo-img p-2 bg-white">
                             </div>
                         </div>
                     </div>
